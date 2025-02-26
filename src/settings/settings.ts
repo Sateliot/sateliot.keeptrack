@@ -1445,6 +1445,36 @@ export class SettingsManager {
         settingsManager.showOpsData = false;
         return;
       }
+
+      // PATCH -> default values for sateliot
+      if (params.includes('search=60550,60534,60552,60537')) {
+        SettingsPresets.loadPresetSateliot(this);
+        settingsManager.showOpsData = false;
+        return;
+      }
+
+      // PATCH if url is track.sateliot.com
+      if (window.location.hostname === 'track.sateliot.com') {
+        SettingsPresets.loadPresetSateliot(this);
+        settingsManager.showOpsData = false;
+        return;
+      }
+
+      // PATCH if url is trackfull.sateliot.com
+      if (window.location.hostname === 'trackfull.sateliot.com') {
+        if (params.includes('preset=sateliot-4')) {
+          SettingsPresets.loadPresetSateliot4(this);
+          return;
+        }
+
+        if (params.includes('preset=sateliot-64')) {
+          SettingsPresets.loadPresetSateliot64(this);
+          settingsManager.loadPhaseBJsonFile = true;
+          return;
+        }
+      }
+
+
       for (const param of params) {
         const key = param.split('=')[0];
         const val = param.split('=')[1];
