@@ -1439,29 +1439,14 @@ export class SettingsManager {
    */
   private initParseFromGETVariables_(params: string[]) {
     if (!this.disableUI) {
-      // if params == [''] then there are no params
-      if (params.length === 1 && params[0] === '') {
-        SettingsPresets.loadPresetSateliot(this);
-        settingsManager.showOpsData = false;
-        return;
-      }
-
-      // PATCH -> default values for sateliot
-      if (params.includes('search=60550,60534,60552,60537')) {
-        SettingsPresets.loadPresetSateliot(this);
-        settingsManager.showOpsData = false;
-        return;
-      }
 
       // PATCH if url is track.sateliot.com
       if (window.location.hostname === 'track.sateliot.com') {
         SettingsPresets.loadPresetSateliot(this);
         settingsManager.showOpsData = false;
         return;
-      }
-
-      // PATCH if url is trackfull.sateliot.com
-      if (window.location.hostname === 'trackfull.sateliot.com') {
+      } else if (window.location.hostname === 'trackfull.sateliot.com') {
+        // PATCH if url is trackfull.sateliot.com
         if (params.includes('preset=sateliot-4')) {
           SettingsPresets.loadPresetSateliot4(this);
           return;
@@ -1472,9 +1457,34 @@ export class SettingsManager {
           settingsManager.loadPhaseBJsonFile = true;
           return;
         }
+
+        // PATCH -> default values for sateliot
+        if (params.includes('search=60550,60534,60552,60537')) {
+          SettingsPresets.loadPresetSateliot4(this);
+          return;
+        }
+
+        if (params.length === 1 && params[0] === '') {
+          SettingsPresets.loadPresetSateliot4(this);
+          return;
+        }
+      } else {
+        // if params == [''] then there are no params
+        if (params.length === 1 && params[0] === '') {
+          SettingsPresets.loadPresetSateliot(this);
+          settingsManager.showOpsData = false;
+          return;
+        }
+
+        // PATCH -> default values for sateliot
+        if (params.includes('search=60550,60534,60552,60537')) {
+          SettingsPresets.loadPresetSateliot(this);
+          settingsManager.showOpsData = false;
+          return;
+        }
       }
 
-
+      // UNREACHABLE CODE !!!
       for (const param of params) {
         const key = param.split('=')[0];
         const val = param.split('=')[1];
