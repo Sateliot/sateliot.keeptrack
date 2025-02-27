@@ -1454,6 +1454,10 @@ export class SettingsManager {
           SettingsPresets.loadPresetSateliot64(this);
           settingsManager.loadPhaseBJsonFile = true;
           return;
+        } else if (params.includes('search=99001,99002,99003,99004,99005')) {
+          SettingsPresets.loadPresetSateliot64(this);
+          settingsManager.loadPhaseBJsonFile = true;
+          return;
         } else {
           SettingsPresets.loadPresetSateliot4(this);
           return;
