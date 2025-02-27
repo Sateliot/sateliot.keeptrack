@@ -1447,14 +1447,14 @@ export class SettingsManager {
         return;
       } else if (window.location.hostname === 'trackfull.sateliot.com') {
         // PATCH if url is trackfull.sateliot.com
-        if (params.includes('preset=sateliot-4')) {
+        if (params[0].includes('preset=sateliot-4')) {
           SettingsPresets.loadPresetSateliot4(this);
           return;
-        } else if (params.includes('preset=sateliot-64')) {
+        } else if (params[0].includes('preset=sateliot-64')) {
           SettingsPresets.loadPresetSateliot64(this);
           settingsManager.loadPhaseBJsonFile = true;
           return;
-        } else if (params.includes('search=99001,99002,99003,99004,99005')) {
+        } else if (params[0].includes('search=99001,99002,99003,99004,99005')) {
           SettingsPresets.loadPresetSateliot64(this);
           settingsManager.loadPhaseBJsonFile = true;
           return;
@@ -1463,22 +1463,33 @@ export class SettingsManager {
           return;
         }
       } else {
+        console.log("Hostname: ", window.location.hostname);
+        console.log("Params: ", params);
         // if params == [''] then there are no params
         if (params.length === 1 && params[0] === '') {
           SettingsPresets.loadPresetSateliot(this);
           settingsManager.showOpsData = false;
           return;
-        }
-
-        // PATCH -> default values for sateliot
-        if (params.includes('search=60550,60534,60552,60537')) {
+        } else if (params[0].includes('search=60550,60534,60552,60537')) {
+          // PATCH -> default values for sateliot
           SettingsPresets.loadPresetSateliot(this);
           settingsManager.showOpsData = false;
+          return;
+        } else if (params[0].includes('search=99001,99002,99003,99004,99005')) {
+          SettingsPresets.loadPresetSateliot64(this);
+          settingsManager.loadPhaseBJsonFile = true;
+          return;
+        } else if (params[0].includes('preset=sateliot-4')) {
+          SettingsPresets.loadPresetSateliot4(this);
+          return;
+        } else if (params[0].includes('preset=sateliot-64')) {
+          SettingsPresets.loadPresetSateliot64(this);
+          settingsManager.loadPhaseBJsonFile = true;
           return;
         }
       }
 
-      // UNREACHABLE CODE !!!
+      // Alex: UNREACHABLE CODE !!!
       for (const param of params) {
         const key = param.split('=')[0];
         const val = param.split('=')[1];
