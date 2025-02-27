@@ -1454,10 +1454,6 @@ export class SettingsManager {
           SettingsPresets.loadPresetSateliot64(this);
           settingsManager.loadPhaseBJsonFile = true;
           return;
-        } else if (params.includes('search=60550,60534,60552,60537')) {
-          // PATCH -> default values for sateliot
-          SettingsPresets.loadPresetSateliot4(this);
-          return;
         } else {
           SettingsPresets.loadPresetSateliot4(this);
           return;
