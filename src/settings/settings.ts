@@ -1450,21 +1450,15 @@ export class SettingsManager {
         if (params.includes('preset=sateliot-4')) {
           SettingsPresets.loadPresetSateliot4(this);
           return;
-        }
-
-        if (params.includes('preset=sateliot-64')) {
+        } else if (params.includes('preset=sateliot-64')) {
           SettingsPresets.loadPresetSateliot64(this);
           settingsManager.loadPhaseBJsonFile = true;
           return;
-        }
-
-        // PATCH -> default values for sateliot
-        if (params.includes('search=60550,60534,60552,60537')) {
+        } else if (params.includes('search=60550,60534,60552,60537')) {
+          // PATCH -> default values for sateliot
           SettingsPresets.loadPresetSateliot4(this);
           return;
-        }
-
-        if (params.length === 1 && params[0] === '') {
+        } else {
           SettingsPresets.loadPresetSateliot4(this);
           return;
         }
