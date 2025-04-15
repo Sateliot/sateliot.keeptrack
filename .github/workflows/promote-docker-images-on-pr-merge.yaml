@@ -1,0 +1,17 @@
+---
+name: Promote Docker Images and Create Tag on main branch
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  promote-docker-images:
+    name: promote-docker-images
+    uses: Sateliot/gh-workflows-templates/.github/workflows/promote-docker-images-on-pr-merge.yaml@main
+    with:
+      ECR: 301987362515.dkr.ecr.eu-central-1.amazonaws.com
+      PROJECT: track-sateliot-com
+    secrets:
+      RETAG_ECR_GITHUB_TOKEN: ${{ secrets.RETAG_ECR_GITHUB_TOKEN }}
+      SLACK_DEVS_GITHUB_ACTIONS_NOTIFICATIONS_WEBHOOK: ${{ secrets.SLACK_DEVS_GITHUB_ACTIONS_NOTIFICATIONS_WEBHOOK }}

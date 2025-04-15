@@ -1,0 +1,22 @@
+---
+name: Test and build project
+
+on:
+  workflow_call:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test-and-build:
+    name: test-and-build
+    uses: Sateliot/gh-workflows-templates/.github/workflows/test-and-build-node.yaml@main
+    with:
+      ECR: 301987362515.dkr.ecr.eu-central-1.amazonaws.com
+      PROJECT: track-sateliot-com
+    secrets:
+      RETAG_ECR_GITHUB_TOKEN: ${{ secrets.RETAG_ECR_GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_URL: ${{ secrets.SONAR_URL }}
+      SLACK_DEVS_GITHUB_ACTIONS_NOTIFICATIONS_WEBHOOK: ${{ secrets.SLACK_DEVS_GITHUB_ACTIONS_NOTIFICATIONS_WEBHOOK }}

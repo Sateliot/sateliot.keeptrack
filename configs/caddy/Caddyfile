@@ -1,0 +1,11 @@
+:80 {
+    root * /usr/share/caddy
+    file_server
+
+    # No TLS for local development
+
+    @2dmap {
+        path /2d-map
+    }
+    rewrite @2dmap /2d-map.html
+}

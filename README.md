@@ -19,7 +19,6 @@ This project extends the capabilities of the original keeptrack.space project by
 - **Offset Distance Modification**: The default value of offsetDistance in the ConeMesh class is modified
 - **2D Visualization**: A 2D visualization of satellite orbits is included for a different perspective on the data.
 
-
 ## Getting Started
 
 ### Prerequisites
@@ -34,22 +33,26 @@ You also need:
 ### Installation
 
 1. Clone this repository:
+
    ```bash
    git clone https://github.com/yourusername/sateliot-keeptrack.git
    cd sateliot-keeptrack
     ```
 
 2. Install the dependencies:
+
    ```bash
    npm install
    ```
 
 3. Build the project:
+
    ```bash
    npm run build
    ```
 
 4. Start the application:
+
    ```bash
    npm start
    ```
@@ -57,11 +60,13 @@ You also need:
 ### Development
 
 To run the project in development mode:
+
 ```bash
 npm run build:watch
 ```
 
 In other terminal, start the application:
+
 ```bash
 npm run start
 ```
@@ -71,13 +76,15 @@ This mode detects changes in the source files and automatically rebuilds the pro
 ### Runing with Docker
 
 1. Build the Docker image:
+
    ```bash
    docker build -t sateliot-keeptrack .
    ```
 
 2. Run the Docker container:
+
    ```bash
-    docker run -p 8080:8080 sateliot-keeptrack
+    docker run -p 8080:80 sateliot-keeptrack
     ```
 
 ## Data Sources
@@ -86,9 +93,9 @@ The project fetches TLE data from Celestrak, but it only updates the local data 
 
 The following data sources are used:
 
-* TLE Data: https://storage.keeptrack.space/data/tle.json
-* TLE Debris Data: https://app.keeptrack.space/tle/TLEdebris.json
-* Vimpel Data: https://storage.keeptrack.space/data/vimpel.json
+- TLE Data: <https://storage.keeptrack.space/data/tle.json>
+- TLE Debris Data: <https://app.keeptrack.space/tle/TLEdebris.json>
+- Vimpel Data: <https://storage.keeptrack.space/data/vimpel.json>
 
 ## Credits
 
@@ -96,4 +103,4 @@ This project is based on the original keeptrack.space by Theodore Kruczek.
 
 ## License
 
-KeepTrack.Space is licensed under the GNU Affero General Public License. This means you can freely use, modify, and distribute it, provided you adhere to the terms of the license. For more details, see the original full license in https://github.com/thkruz/keeptrack.space/blob/main/LICENSE.
+KeepTrack.Space is licensed under the GNU Affero General Public License. This means you can freely use, modify, and distribute it, provided you adhere to the terms of the license. For more details, see the original full license in <https://github.com/thkruz/keeptrack.space/blob/main/LICENSE>.
